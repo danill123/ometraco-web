@@ -1,0 +1,65 @@
+.products-carousel .owl-prev {
+    background: grey;
+    padding-bottom: 5px !important;
+    width: 25px;
+    border-radius: 50px !important;
+}
+
+.products-carousel .owl-next {
+    background: grey !important;
+    padding-bottom: 5px ;
+    width: 25px !important;
+    border-radius: 50px !important;
+}
+
+.products-carousel .owl-nav button {
+    position: absolute;
+    top: 40%;
+}
+
+.products-carousel .owl-nav .owl-prev {
+    left: 0;
+}
+
+.products-carousel .owl-nav .owl-next {
+    right: 0;
+}
+
+.products-carousel .owl-nav .disabled {
+    display: none;
+}
+
+.owl-dots {
+    display: none;
+}
+
+.products-carousel {
+    position: relative;
+}
+
+.products-carousel .item {
+    min-height: 10rem;
+    background: #4DC7A0;
+    border-radius: 10px; 
+    box-shadow: 3px 3px; 
+    background: white;
+}
+
+.products-carousel .product-name {
+    font-size: 12px; 
+    text-align: justify;
+    margin-bottom: 4px;
+}
+
+.products-carousel .location-name {
+    font-size: 12px; 
+    margin-bottom: 4px;
+    font-weight: 450;
+}
+
+.products-carousel .product-image {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    height: 130px;
+    object-fit: cover;
+}

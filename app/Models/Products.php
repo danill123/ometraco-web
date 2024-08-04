@@ -56,4 +56,22 @@ class Products extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function insertCategories($product_id, $categories) {
+        $this->db->transBegin();
+        $this->db->table('product_categories')->where('product_id', $product_id)->delete();
+
+        foreach ($categories as $key => $value) {
+            $this->db->table('product_categories')->insert([
+               'product_id' => $product_id,
+               'category_id' => $value
+            ]);
+        }
+
+        $this->db->transCommit();
+    }
+
+    public function getCategories($product_id) {
+        return $this->db->table('product_categories')->where('product_id', $product_id)->get()->getResultArray();
+    }
 }

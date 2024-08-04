@@ -1,5 +1,4 @@
-<?= view('partials/header', ['title' => 'Product List']); ?>
-<!-- app\Views\partials\navbar-admin.php -->
+<?= view('partials/header', ['title' => 'Category List']); ?>
 <?= view('partials/navbar-admin'); ?>
 <style>
 #dataTable_wrapper .dt-buttons {
@@ -26,10 +25,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Image</th>
                             <th>Nama</th>
-                            <th>Harga Barang</th>
-                            <th>Kategori</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -38,16 +34,9 @@
                         <?php foreach ($list as $key => $item) { ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td>
-                                    <?php if(!empty(trim($item["image"]))) { ?>
-                                        <img src="<?= $item["image"] ?>" style="max-width: 100%; width: 100px;" />
-                                    <?php } ?>
-                                </td>
                                 <td><?= $item["name"] ?></td>
-                                <td>Rp. <?= preg_replace('/\.00$/', '', number_format($item["price"], 2) ) ?></td>
-                                <td>Kategori</td>
                                 <td>
-                                    <a style="cursor: pointer;" href="<?= base_url("admin/add_edit_product?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
+                                    <a style="cursor: pointer;" href="<?= base_url("admin/add_edit_categories?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

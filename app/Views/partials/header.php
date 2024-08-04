@@ -12,7 +12,22 @@
     <link rel="stylesheet" href="<?= base_url("vendor/owlcarousel/assets/owl.theme.default.min.css") ?>">
     <script src="<?= base_url("vendor/jquery/jquery.slim.min.js") ?>"> </script>
     <script src="<?= base_url("vendor/owlcarousel/owl.carousel.min.js") ?>"> </script>
-    <!-- public\vendor\owlcarousel\owl.carousel.min.js -->
+    <script src="<?= base_url("vendor/jquery-easing/jquery.easing.min.js") ?>"> </script>
+
+    <!-- Page level plugins -->
+    <script src="<?= base_url("vendor/datatables/jquery.dataTables.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/dataTables.bootstrap4.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/buttons/js/dataTables.buttons.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/buttons/js/buttons.bootstrap4.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/jszip/jszip.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/pdfmake/pdfmake.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/pdfmake/vfs_fonts.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/buttons/js/buttons.html5.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/buttons/js/buttons.print.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/buttons/js/buttons.colVis.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/responsive/js/dataTables.responsive.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/datatables/responsive/js/responsive.bootstrap4.min.js"); ?>"></script>
+    <script src="<?= base_url("vendor/gijgo/js/gijgo.min.js"); ?>"></script>
 
     <title><?= $title ?></title>
   </head>

@@ -11,9 +11,9 @@ $routes->get('/products', 'Products::index');
 $admin_routes = [
     'admin' => 'Admin::index',
     'admin/products' => 'Admin::products',
-    'admin/add_edit_product' => 'Admin::add_edit_product',
+    'admin/products/add_edit_product' => 'Admin::add_edit_product',
     'admin/categories' => 'Admin::categories',
-    'admin/add_edit_categories' => 'Admin::add_edit_categories'
+    'admin/categories/add_edit_categories' => 'Admin::add_edit_categories'
 ];
 
 $routes->post('admin/insert_update_product', 'Admin::insert_update_product');

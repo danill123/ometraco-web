@@ -1,15 +1,61 @@
-.products-carousel .owl-prev {
-    background: grey;
-    padding-bottom: 5px !important;
-    width: 25px;
-    border-radius: 50px !important;
-}
-
-.products-carousel .owl-next {
-    background: grey !important;
+.owl-carousel-category .owl-next, .owl-carousel-category .owl-prev {
+    background: whitesmoke !important;
     padding-bottom: 5px ;
     width: 25px !important;
-    border-radius: 50px !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    /* border-radius: 50px !important; */
+}
+
+.owl-carousel-category .owl-next:hover, .owl-carousel-category .owl-prev:hover {
+    color: unset !important;
+    text-decoration: none !important;
+}
+
+.owl-carousel-category .owl-nav button {
+    position: absolute;
+    top: 30%;
+}
+
+.owl-carousel-category .owl-nav .owl-prev {
+    left: -15px;
+}
+
+.owl-carousel-category .owl-nav .owl-next {
+    right: -15px;
+}
+
+.owl-carousel-category .owl-nav .owl-prev:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.owl-carousel-category .owl-nav .owl-next:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.owl-carousel-category .owl-nav .disabled {
+    display: none !important;
+}
+
+.owl-carousel-category {
+    position: relative;
+}
+
+
+/*  */
+
+.products-carousel .owl-next, .products-carousel .owl-prev {
+    background: whitesmoke !important;
+    padding-bottom: 5px ;
+    width: 25px !important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    /* border-radius: 50px !important; */
+}
+
+.products-carousel .owl-next:hover, .products-carousel .owl-prev:hover {
+    color: unset !important;
+    text-decoration: none !important;
 }
 
 .products-carousel .owl-nav button {
@@ -18,15 +64,25 @@
 }
 
 .products-carousel .owl-nav .owl-prev {
-    left: 0;
+    left: -15px;
 }
 
 .products-carousel .owl-nav .owl-next {
-    right: 0;
+    right: -15px;
+}
+
+.products-carousel .owl-nav .owl-prev:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.products-carousel .owl-nav .owl-next:focus {
+    border: none !important;
+    outline: none !important;
 }
 
 .products-carousel .owl-nav .disabled {
-    display: none;
+    display: none !important;
 }
 
 .owl-dots {

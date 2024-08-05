@@ -1,6 +1,7 @@
 <?= view('partials/header', ['title' => 'Product List']); ?>
 <!-- app\Views\partials\navbar-admin.php -->
 <?= view('partials/navbar-admin'); ?>
+<?= view('partials/sidebar-admin'); ?>
 <style>
 #dataTable_wrapper .dt-buttons {
     margin-top: 20px;
@@ -47,7 +48,7 @@
                                 <td>Rp. <?= preg_replace('/\.00$/', '', number_format($item["price"], 2) ) ?></td>
                                 <td>Kategori</td>
                                 <td>
-                                    <a style="cursor: pointer;" href="<?= base_url("admin/add_edit_product?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
+                                    <a style="cursor: pointer;" href="<?= base_url("admin/products/add_edit_product?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -82,4 +83,5 @@
     });
     </script>
 </div>
+<?= view('partials/end-sidebar-admin'); ?>
 <?= view('partials/footer'); ?>

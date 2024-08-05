@@ -1,5 +1,6 @@
 <?= view('partials/header', ['title' => 'Category List']); ?>
 <?= view('partials/navbar-admin'); ?>
+<?= view('partials/sidebar-admin'); ?>
 <style>
 #dataTable_wrapper .dt-buttons {
     margin-top: 20px;
@@ -36,7 +37,7 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $item["name"] ?></td>
                                 <td>
-                                    <a style="cursor: pointer;" href="<?= base_url("admin/add_edit_categories?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
+                                    <a style="cursor: pointer;" href="<?= base_url("admin/categories/add_edit_categories?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -71,4 +72,5 @@
     });
     </script>
 </div>
+<?= view('partials/end-sidebar-admin'); ?>
 <?= view('partials/footer'); ?>

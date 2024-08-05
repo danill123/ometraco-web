@@ -2,9 +2,9 @@
 
 <?php echo view('partials/navbar-search'); ?>
 
-<div class="container">
+<div class="container mb-5">
 
-    <div id="carouselExampleIndicators" class="carousel slide mt-5 mb-5" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide mt-5 mb-5 " data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -31,65 +31,150 @@
         </a>
     </div>
 
-    <hr>
+    <div class="card container py-2">
+        <h4>Kategori</h4>
+        <div class="owl-carousel owl-theme owl-carousel-category mt-2">
+            <?php foreach ($categories as $key => $item) { ?>
+                <a href="<?= base_url('category?id=' . $item->id) ?>" class="d-flex item justify-content-center shadow-sm" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain; text-decoration: none;">
+                    <h5 class="text-white text-center"><?= $item->name ?></h5>
+                </a>
+            <?php } ?>
+        </div>
+
+        <!-- <div class="row justify-content-center">
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+
+            <div class="col-md-2 p-1">
+                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
+                    <h5 class="text-white text-center">Minel & Kubara</h5>
+                </div>
+            </div>
+    
+        </div> -->
+        <!-- <div class="col-md-2 px-1  d-flex justify-content-center" style="flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: cover;">
+            <h5 class="text-white text-center">Minel & Kubara</h5>
+        </div> -->
+
+    </div>
+
+    <hr class="">
 
     <div>
-        <h4>Hello</h4>
+        <h4 class="">Hello</h4>
         <div class="owl-carousel owl-theme products-carousel">
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+            
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
-            <div class="item mb-1 mt-1 shadow-sm ml-1 mr-1">
-                <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
-                <div class="p-1">
-                    <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
-                    <h6>Rp. 500.000</h6>
-                    <p class="location-name">Kota Medan</p>
+
+            <div style="padding: 1.7px;">
+                <div class="item mb-1 mt-1 shadow-sm">
+                    <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                    <div class="p-1">
+                        <p class="product-name">Besi Beton Polos SNI Ukuran 8mm x 12 Meter DPP Steel</p>
+                        <h6>Rp. 500.000</h6>
+                        <p class="location-name">Kota Medan</p>
+                    </div>
                 </div>
             </div>
             <!-- <div class="item"><h4>2</h4></div>
@@ -104,49 +189,53 @@
             <div class="item"><h4>11</h4></div>
             <div class="item"><h4>12</h4></div> -->
         </div>
-        
     </div>
 
-    <hr>
+    <?php foreach ($carousel_list as $key => $item) { ?>
+        <hr class="">
 
-    <div>
+        <div>
+            <h4 class=""><?= esc($item->name) ?></h4>
+            <div class="owl-carousel owl-theme products-carousel">
 
-        <div class="owl-carousel owl-theme products-carousel">
-            <div class="item"><h4>1</h4></div>
-            <div class="item"><h4>2</h4></div>
-            <div class="item"><h4>3</h4></div>
-            <div class="item"><h4>4</h4></div>
-            <div class="item"><h4>5</h4></div>
-            <div class="item"><h4>6</h4></div>
-            <div class="item"><h4>7</h4></div>
-            <div class="item"><h4>8</h4></div>
-            <div class="item"><h4>9</h4></div>
-            <div class="item"><h4>10</h4></div>
-            <div class="item"><h4>11</h4></div>
-            <div class="item"><h4>12</h4></div>
+                <?php foreach ($item->products as $subkey => $subitem) { ?>
+                    <div style="padding: 1.7px;">
+                        <div class="item mb-1 mt-1 shadow-sm">
+                            <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+                            <div class="p-1 px-2">
+                                <p class="product-name"><?= esc($subitem["name"]) ?></p>
+                                <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($subitem["price"]), 2) )) ?> </h6> 
+                                <p class="location-name"><?= esc($subitem["location"]) ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+
+            </div>
         </div>
-        
-    </div>
+    <?php } ?>
 
 </div>
 
-<!-- style="
-    position: absolute;
-    left: 0;
-    top: 50%;
-" -->
-<!-- style="
-    position: absolute;
-    right: 0;
-    top: 50%;
-" -->
-
 <script>
-    // jQuery(document).ready(function(){
-    //     alert("bacot")
-    // })
+    jQuery('.owl-carousel-category').owlCarousel({
+        loop:false,
+        margin:10,
+        nav:true,
+        responsive:{
+            0:{
+                items:2
+            },
+            600:{
+                items:4
+            },
+            1000:{
+                items:6
+            }
+        }
+    })
 
-    jQuery('.owl-carousel').owlCarousel({
+    jQuery('.products-carousel').owlCarousel({
         loop:false,
         margin:10,
         nav:true,

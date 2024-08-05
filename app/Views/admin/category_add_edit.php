@@ -1,6 +1,7 @@
 <?= view('partials/header', ['title' => 'Product List']); ?>
 
 <?= view('partials/navbar-admin'); ?>
+<?= view('partials/sidebar-admin'); ?>
 
 <div class="container">
     <?php if (session()->getFlashdata('errors')): ?>
@@ -18,7 +19,7 @@
     <form action="/admin/insert_update_categories" enctype="multipart/form-data" method="post" class="my-4">
         <?= csrf_field() ?>
 
-        <a style="cursor: pointer;"><i class="fa fa-arrow-left"></i> Kembali </a>
+        <a style="cursor: pointer;" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali </a>
         <div class="row mt-3 mb-3">
             <div class="col-6">
                 <?php if(!empty($detail)) { ?>
@@ -62,4 +63,5 @@
     </form>
 </div>
 
+<?= view('partials/end-sidebar-admin'); ?>
 <?= view('partials/footer'); ?>

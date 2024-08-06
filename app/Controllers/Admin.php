@@ -6,6 +6,8 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Products;
 use App\Models\Category;
+use App\Models\Carousel;
+use App\Models\Banner;
 
 class Admin extends BaseController
 {
@@ -20,6 +22,22 @@ class Admin extends BaseController
     public function index()
     {
         //
+    }
+
+    public function banner() {
+        $banner = new Banner();
+        $data["list"] = $this->categoryModel->findAll();
+        return view("admin/category_list", $data);
+    }
+
+    public function banner_add_edit_view() {
+        $data["list"] = $this->categoryModel->findAll();
+        return view("admin/category_list", $data);
+    }
+
+    public function banner_add_edit_post() {
+        $data["list"] = $this->categoryModel->findAll();
+        return view("admin/category_list", $data);
     }
 
     public function categories() {
@@ -86,14 +104,33 @@ class Admin extends BaseController
 
     public function insert_update_product() {
 
+        $image = $this->request->getFile('image');
+        
         $validation = \Config\Services::validation();
-        $validation->setRules([
+
+        $rules = [
             'name'  => 'required|min_length[3]',
             'price' => 'required|min_length[3]'
-        ]);
+        ];
+
+        if($image->getSize() > 0) {
+            $rules['image'] = [  
+                'label' => 'Image File',
+                'rules' => 'uploaded[image]'  
+                    . '|is_image[image]'  
+                    . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]' 
+            ];
+        }
+
+        $validation->setRules($rules);
 
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        if($image->getSize() > 0) {
+            $filename = $image->getRandomName();
+            $image->move(ROOTPATH . 'public/image', $filename);
         }
 
         $data = [
@@ -103,6 +140,10 @@ class Admin extends BaseController
             'location' => $this->request->getPost('location')
         ];
         
+        if(!empty(trim($image->getName()))) {
+            $data["image"] = base_url("image/" . $image->getName());
+        }
+
         // 'image' => $this->request->getPost('image'),
         if(empty($this->request->getPost('id'))) {
             if($this->productModel->insert($data, false)) {
@@ -118,5 +159,54 @@ class Admin extends BaseController
 
         session()->setFlashdata('success', 'Data berhasil di simpan');
         return redirect()->to(base_url('admin/products'));
+    }
+
+    public function home_content() {
+        $carousel = new Carousel();
+        $data["datum"] = $carousel->findAll();
+        return view("admin/home_list", $data);
+    }
+
+    public function view_add_edit_home_content() {
+
+        $detail = array();
+        if(!empty($this->request->getGet("id"))) {
+            $carousel = new Carousel();
+            $detail = $carousel->find($this->request->getGet("id"));
+        }
+
+        $data["detail"] = $detail;
+        $data["products"] = $this->productModel->findAll();
+        return view("admin/home_add_edit", $data);   
+    }
+
+    public function add_edit_home_content_post() {
+
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'name'  => 'required|min_length[3]',
+            'show_front'  => 'required|min_length[2]'
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'description' => $this->request->getPost('description'),
+            'item' => implode(",", $this->request->getPost('items')),
+            'show_front' => $this->request->getPost('show_front')
+        ];
+
+        $carousel = new Carousel();
+        if(empty($this->request->getPost('id'))) {
+            $carousel->insert($data, false);
+        } else {
+            $carousel->update($this->request->getPost('id'), $data);
+        }   
+
+        session()->setFlashdata('success', 'Data berhasil di simpan');
+        return redirect()->to(base_url('admin'));
     }
 }

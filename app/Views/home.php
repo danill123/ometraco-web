@@ -33,10 +33,10 @@
 
     <div class="card container py-2">
         <h4>Kategori</h4>
-        <div class="owl-carousel owl-theme owl-carousel-category mt-2">
+        <div class="owl-carousel owl-theme owl-carousel-category mt-2 mb-2">
             <?php foreach ($categories as $key => $item) { ?>
-                <a href="<?= base_url('category?id=' . $item->id) ?>" class="d-flex item justify-content-center shadow-sm" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain; text-decoration: none;">
-                    <h5 class="text-white text-center"><?= $item->name ?></h5>
+                <a href="<?= base_url('category?id=' . esc($item->id)) ?>" class="d-flex item justify-content-center shadow-sm" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain; text-decoration: none;">
+                    <h6 class="text-white text-center"><?= esc($item->name) ?></h6>
                 </a>
             <?php } ?>
         </div>
@@ -97,7 +97,7 @@
 
     </div>
 
-    <hr class="">
+    <!-- <hr class="">
 
     <div>
         <h4 class="">Hello</h4>
@@ -177,19 +177,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="item"><h4>2</h4></div>
-            <div class="item"><h4>3</h4></div>
-            <div class="item"><h4>4</h4></div>
-            <div class="item"><h4>5</h4></div>
-            <div class="item"><h4>6</h4></div>
-            <div class="item"><h4>7</h4></div>
-            <div class="item"><h4>8</h4></div>
-            <div class="item"><h4>9</h4></div>
-            <div class="item"><h4>10</h4></div>
-            <div class="item"><h4>11</h4></div>
-            <div class="item"><h4>12</h4></div> -->
         </div>
-    </div>
+    </div> -->
 
     <?php foreach ($carousel_list as $key => $item) { ?>
         <hr class="">
@@ -199,11 +188,11 @@
             <div class="owl-carousel owl-theme products-carousel">
 
                 <?php foreach ($item->products as $subkey => $subitem) { ?>
-                    <div style="padding: 1.7px;">
+                    <div style="padding: 1.7px; cursor: pointer;" class="div-href" link-href="<?= base_url("product?id=" . esc($subitem["id"])) ?>">
                         <div class="item mb-1 mt-1 shadow-sm">
                             <img class="product-image" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
                             <div class="p-1 px-2">
-                                <p class="product-name"><?= esc($subitem["name"]) ?></p>
+                                <p class="product-name product-name<?= $item->id ?>"><?= esc($subitem["name"]) ?></p>
                                 <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($subitem["price"]), 2) )) ?> </h6> 
                                 <p class="location-name"><?= esc($subitem["location"]) ?></p>
                             </div>
@@ -213,6 +202,24 @@
 
             </div>
         </div>
+
+        <script>
+            $(document).ready(function() {
+                $('.div-href').click(function(){
+                    window.location.href = $(this).attr("link-href");
+                })
+
+                let maxHeight = 0;
+                $('.product-name<?= $item->id ?>').each(function() {
+                    let height = $(this).outerHeight();
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                });
+
+                $('.product-name<?= $item->id ?>').css('height', maxHeight + 'px');
+            });
+        </script>
     <?php } ?>
 
 </div>

@@ -15,7 +15,7 @@
             </div>
         <?php endif; ?>
     
-        <form action="/admin/insert_update_product" enctype="multipart/form-data" method="post" class="my-4">
+        <form action="/admin/add_edit_home_content_post" enctype="multipart/form-data" method="post" class="my-4">
             <?= csrf_field() ?>
     
             <a style="cursor: pointer;" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali </a>
@@ -29,20 +29,21 @@
                         <input type="text" value="<?php if(!empty($detail)) { echo $detail["name"]; } ?>" name="name" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Deskripsi</label>
-                        <textarea id="summernote" name="description"><?php if(!empty($detail)) { echo $detail["description"]; } ?></textarea>
+                        <label class="form-label">description</label>
+                        <textarea class="form-control" name="description" rows="3"><?php if(!empty($detail)) { echo $detail["description"]; } ?></textarea>
                     </div>
+
                     <div class="mb-3">
-                        <label class="form-label">Harga</label>
-                        <input type="text" id="priceInput" name="price" value="<?php if(!empty($detail)) { echo preg_replace('/\.00$/', '', number_format($detail["price"], 2) ); } ?>" class="form-control">
+                        <label class="form-label">Munculkan</label>
+                        <select name="show_front" class="form-control form-control-lg">
+                            <option value="yes" <?php if(!empty($detail)) { echo ( $detail["show_front"] == "yes" ? "selected" : "" ) ; } ?>>Ya</option>
+                            <option value="no" <?php if(!empty($detail)) { echo ( $detail["show_front"] == "no" ? "selected" : "" ); } ?>>Tidak</option>
+                        </select>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Lokasi</label>
-                        <input type="text" name="location" class="form-control" value="<?php if(!empty($detail)) { echo $detail["location"]; } ?>">
-                    </div>
+
     
                     <div class="mb-3">
-                        <label class="form-label">Kategori</label>
+                        <label class="form-label">Items</label>
                         <br>
     
                         <style>
@@ -50,8 +51,15 @@
                             width: 100% !important;
                         }
                         </style>
-                        <select class="js-example-basic-multiple" name="categories[]">
-                            <?php foreach ($categories as $key => $item) { ?>
+                        <?php 
+                        $category_select = [];
+                        if($detail) {
+                            $category_select = explode(",", $detail["item"]);
+                        }
+
+                        ?>
+                        <select class="js-example-basic-multiple" name="items[]" multiple="multiple">
+                            <?php foreach ($products as $key => $item) { ?>
                                 <option value="<?= $item["id"] ?>" <?= in_array($item["id"], $category_select) ? "selected" : "" ?>><?= $item["name"] ?></option>
                             <?php } ?>
                         </select>
@@ -62,16 +70,11 @@
                 <div class="col-6">
                     <p>Gambar</p>
                     <img id="blah" src="https://dummyimage.com/600x400/000/fff" alt="your image" style="max-width: 100%; width: 300px;" />
-                    <input accept="image/*" name="image" type='file' id="imgInp" class="mt-3" />
+                    <input accept="image/*" type='file' id="imgInp" class="mt-3" />
                 </div>
             </div>
     
             <script>
-                document.getElementById("priceInput").addEventListener("input", function(event){
-                    event.target.value = parseInt(event.target?.value.replace(/[^0-9.]/g, '')).toLocaleString()
-                });
-    
-                
                 const imgInp = document.getElementById("imgInp"); 
                 imgInp.onchange = evt => {
                     const [file] = imgInp.files
@@ -80,23 +83,13 @@
                     }
                 }
     
-                $(document).ready(function() {
-                    $('#summernote').summernote({
-                        placeholder: 'Masukkan Deskripsi',
-                        tabsize: 2,
-                        height: 100
-                    });
-                });
-    
                 jQuery(document).ready(function() {
                     $('.js-example-basic-multiple').select2();
                 });
             </script>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
     </div>
 
 <?= view('partials/end-sidebar-admin'); ?>

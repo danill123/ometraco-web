@@ -12,7 +12,7 @@
                 </a> -->
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="<?= base_url('admin') ?>" class="nav-link align-middle px-0 <?= current_url(true) == base_url('admin') ? "text-dark" : "" ?>">
+                        <a href="<?= base_url('admin') ?>" class="nav-link align-middle px-0 <?= (strpos(current_url(true), "admin") && !strpos(current_url(true), "admin/")) || strpos(current_url(true),"admin/home") ? "text-dark" : "" ?>">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                         </a>
                     </li>

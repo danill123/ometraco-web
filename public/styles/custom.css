@@ -102,9 +102,16 @@
 }
 
 .products-carousel .product-name {
-    font-size: 12px; 
-    text-align: justify;
+    font-size: 0.86rem; 
+    /* 12px;  */
+    /* text-align: justify; */
     margin-bottom: 4px;
+
+    display: -webkit-box;           /* Defines the box display */
+  -webkit-box-orient: vertical;   /* Specifies the box's orientation */
+  -webkit-line-clamp: 2;          /* Limits the number of lines */
+  overflow: hidden;               /* Hides overflow text */
+  text-overflow: ellipsis;  
 }
 
 .products-carousel .location-name {
@@ -118,4 +125,13 @@
     border-top-left-radius: 10px;
     height: 130px;
     object-fit: cover;
+}
+
+a:hover {
+    color: unset !important;
+    text-decoration: none !important;
+}
+
+a {
+    color: unset !important;
 }

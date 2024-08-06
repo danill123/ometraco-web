@@ -18,25 +18,67 @@ class Home extends BaseController
         $db = \Config\Database::connect();
         $db->query("SET SESSION sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
 
-        $categories   = $db->query('SELECT id, name, image FROM `categories` WHERE hide_from_menu = "no"');
+        $categories   = $db->query('SELECT id, name, image FROM `categories` WHERE show_menu = "yes"');
 
         $data["categories"] = $categories->getResult();
 
-        $product_category   = $db->query("  SELECT c.*, GROUP_CONCAT(cj.product_id) AS product_ids
-                                            FROM categories c
-                                            INNER JOIN product_categories cj ON cj.category_id = c.id;")->getResult();
+        $carousels = $db->query("  SELECT * FROM carousels WHERE show_front = 'yes'")->getResult();
 
-        foreach ($product_category as $key => &$item) {
-            $item->products = $db->table('products')->select('id, name, price, image, location') ->whereIn('id', explode(",", $item->product_ids))->get()->getResultArray();
+        foreach ($carousels as $key => &$item) {
+            $item->products = $db->table('products')->select('id, name, price, image, location') ->whereIn('id', explode(",", $item->item))->get()->getResultArray();
         }
 
         
-        $data["carousel_list"] = $product_category;
-        // var_dump("<pre>");
-        // var_dump($data);
-        // exit;
+        $data["carousel_list"] = $carousels;
+
         $db->close();
 
         return view('home', $data);
+    }
+
+    public function category(): string
+    {
+        $db = \Config\Database::connect();
+
+        $products = $db->query('SELECT products.id, products.name, products.price, products.image, products.location
+                                FROM `product_categories` INNER JOIN products ON products.id = `product_categories`.product_id
+                                WHERE product_categories.category_id = ?', [$this->request->getGet("id")]);
+
+        $data['datum'] = $products->getResult();
+        $data["category_name"] = "";
+        $data["category_id"] = "";
+
+        $category = $db->query('SELECT * FROM categories 
+                                WHERE id = ?', [$this->request->getGet("id")]);
+
+        foreach ($category->getResult() as $key => $value) {
+            $data["category_name"] = $value->name;
+            $data["category_id"] = $value->id;
+        }
+
+        $db->close();
+
+        return view('category', $data);
+    }
+
+    public function product() {
+        $data = $this->productModel->find($this->request->getGet("id"));
+
+        $db = \Config\Database::connect();
+
+        $category = $db->query('SELECT categories.`name`, product_categories.category_id
+                                FROM `product_categories` INNER JOIN categories ON categories.id = `product_categories`.category_id 
+                                WHERE product_categories.product_id = ?', [$this->request->getGet("id")]);
+
+        $data["category_name"] = "";
+        $data["category_id"] = "";
+        foreach ($category->getResult() as $key => $value) {
+            $data["category_name"] = $value->name;
+            $data["category_id"] = $value->category_id;
+        }
+
+        $db->close();
+
+        return view('product', $data);
     }
 }

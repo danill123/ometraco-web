@@ -16,6 +16,12 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+    <?php if(!empty($detail)) { ?>
+        <h4>Ubah Data Kategori</h4>
+    <?php } else { ?>
+        <h4>Tambahkan Data Kategori</h4>
+    <?php } ?>
+
     <form action="/admin/insert_update_categories" enctype="multipart/form-data" method="post" class="my-4">
         <?= csrf_field() ?>
 
@@ -31,7 +37,7 @@
                 </div>
                 <div>
                     <p>Gambar</p>
-                    <img id="blah" src="<?php if(!empty($detail)) { echo base_url("image/" . $detail["image"]); } else { echo "https://dummyimage.com/600x400&text=dummyimage.com+rocks!"; } ?>" alt="your image" style="max-width: 100%; width: 300px;" />
+                    <img id="blah" src="<?php if(!empty($detail)) { echo base_url("image/" . $detail["image"]); } else { echo "https://dummyimage.com/600x400&text=image"; } ?>" alt="your image" style="max-width: 100%; width: 300px;" />
                     <input accept="image/*" name="image" type='file' id="imgInp" class="mt-3" />
                 </div>
             </div>
@@ -54,7 +60,7 @@
                 });
             });
         </script>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" style="background: #6482AD; border: #6482AD">Submit</button>
     </form>
 </div>
 

@@ -8,14 +8,14 @@
         <div id="carouselExampleIndicators" class="carousel slide mt-5 mb-5 " data-ride="carousel">
             <ol class="carousel-indicators">
                 <?php foreach ($banners as $key => $item) { ?>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="<?= $key == 0 ? "active" : "" ?>"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? "active" : "" ?>"></li>
                 <?php } ?>
                 <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
             </ol>
             <div class="carousel-inner">
                 <?php foreach ($banners as $key => $item) { ?>
-                    <div class="carousel-item active">
+                    <div class="carousel-item <?= $key == 0 ? "active" : "" ?>">
                         <img style="border-radius: 10px; object-fit: cover;" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 " width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide" src="<?= base_url("image/" . $item->image) ?>">
                         <!-- <svg style="border-radius: 10px;" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 " width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">First slide</text></svg> -->
                     </div>

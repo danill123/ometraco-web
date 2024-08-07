@@ -20,7 +20,11 @@
         </div>
     <?php endif; ?>
 
-    <div class="card my-5 shadow-sm">
+    <div class="d-flex justify-content-between">
+        <h5>Banner</h5>
+        <a href="<?= base_url("admin/banner/banner_add_edit_view") ?>" style="background: #6482AD; border: #6482AD" class="btn btn-success text-white">Add</a>
+    </div>
+    <div class="card mb-5 mt-3 shadow-sm">
         <div class="table-responsive">
                 <table class="table table-striped w-100 dt-responsive nowrap" id="dataTable">
                     <thead>
@@ -39,7 +43,7 @@
                                 <td><?= $item["title"] ?></td>
                                 <td><img style="width: 200px;" src="<?= base_url("image/" . $item["image"]) ?>" /></td>
                                 <td>
-                                    <a style="cursor: pointer;" href="<?= base_url("admin/categories/add_edit_categories?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
+                                    <a style="cursor: pointer;" href="<?= base_url("admin/banner/banner_add_edit_view?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

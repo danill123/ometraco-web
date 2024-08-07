@@ -15,6 +15,11 @@
             </div>
         <?php endif; ?>
     
+        <?php if(!empty($detail)) { ?>
+            <h4>Ubah Data Banner</h4>
+        <?php } else { ?>
+            <h4>Tambahkan Data Banner</h4>
+        <?php } ?>
         <form action="/admin/add_edit_home_content_post" enctype="multipart/form-data" method="post" class="my-4">
             <?= csrf_field() ?>
     
@@ -69,7 +74,7 @@
     
                 <div class="col-6">
                     <p>Gambar</p>
-                    <img id="blah" src="https://dummyimage.com/600x400&text=dummyimage.com+rocks!" alt="your image" style="max-width: 100%; width: 300px;" />
+                    <img id="blah" src="https://dummyimage.com/600x400&text=image" alt="your image" style="max-width: 100%; width: 300px;" />
                     <input accept="image/*" type='file' id="imgInp" class="mt-3" />
                 </div>
             </div>
@@ -87,7 +92,7 @@
                     $('.js-example-basic-multiple').select2();
                 });
             </script>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" style="background: #6482AD; border: #6482AD">Submit</button>
         </form>
 
     </div>

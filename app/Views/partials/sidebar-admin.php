@@ -26,7 +26,7 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu" style="width: 100%;">
                     <li class="nav-item <?= (strpos(current_url(true), "admin") && !strpos(current_url(true), "admin/")) || strpos(current_url(true),"admin/home") ? "active-menu" : "" ?>">
                         <a href="<?= base_url('admin') ?>" class="nav-link align-middle px-3 ">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline ml-3">Home</span>
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline ml-3">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-item <?= strpos(current_url(true),"admin/banner") ? "active-menu" : "" ?>">

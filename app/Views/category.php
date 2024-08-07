@@ -30,6 +30,20 @@
                 <h4 class="text-center mt-5">Tidak ada data</h4>
             </div>
         <?php } ?>
+
+        <script>
+            $(document).ready(function() {
+                let maxHeight = 0;
+                $('.product-name').each(function() {
+                    let height = $(this).outerHeight();
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                });
+
+                $('.product-name').css('height', maxHeight + 'px');
+            });
+        </script>
     </div>
 </div>
 

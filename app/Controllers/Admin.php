@@ -31,7 +31,14 @@ class Admin extends BaseController
     }
 
     public function banner_add_edit_view() {
-        return view("admin/banner_add_edit");
+        $detail = array();
+        $banner = new Banner();
+        if(!empty($this->request->getGet("id"))) {
+            $detail = $banner->find($this->request->getGet("id"));
+        }
+
+        $data["detail"] = $detail;
+        return view("admin/banner_add_edit", $data);
     }
 
     public function banner_add_edit_post() {

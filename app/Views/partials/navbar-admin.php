@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
 
-    <a class="navbar-brand" href="#">
+    <a href="<?= base_url("admin") ?>" class="navbar-brand" href="#">
       <!-- Navbar -->
       <img src="<?= base_url('image/ometraco.jpg'); ?>" alt="" style="max-width: 100%; width: 30%;">
     </a>

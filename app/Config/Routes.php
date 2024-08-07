@@ -15,11 +15,14 @@ $admin_routes = [
     'admin/products' => 'Admin::products',
     'admin/products/add_edit_product' => 'Admin::add_edit_product',
     'admin/categories' => 'Admin::categories',
-    'admin/categories/add_edit_categories' => 'Admin::add_edit_categories'
+    'admin/categories/add_edit_categories' => 'Admin::add_edit_categories',
+    'admin/banner' => 'Admin::banner',
+    'admin/banner/banner_add_edit_view' => 'Admin::banner_add_edit_view'
 ];
 
 $routes->post('admin/insert_update_product', 'Admin::insert_update_product');
 $routes->post('admin/insert_update_categories', 'Admin::insert_update_categories');
 $routes->post('admin/add_edit_home_content_post', 'Admin::add_edit_home_content_post');
+$routes->post('admin/banner_add_edit_post', 'Admin::banner_add_edit_post');
 
 $routes->map($admin_routes);

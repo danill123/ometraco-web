@@ -1,4 +1,4 @@
-<?= view('partials/header', ['title' => 'Category List']); ?>
+<?= view('partials/header', ['title' => 'Banner List']); ?>
 <?= view('partials/navbar-admin'); ?>
 <?= view('partials/sidebar-admin'); ?>
 <style>
@@ -27,7 +27,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Nama</th>
-                            <th>Gambar</th>
+                            <th>Image</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -36,12 +36,8 @@
                         <?php foreach ($list as $key => $item) { ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $item["name"] ?></td>
-                                <td>
-                                    <?php if(!empty($item["image"])) { ?>
-                                        <img src="<?= base_url("image/" . $item["image"]) ?>" style="max-width: 100%; width: 100px;" alt="">
-                                    <?php } ?>
-                                </td>
+                                <td><?= $item["title"] ?></td>
+                                <td><img style="width: 200px;" src="<?= base_url("image/" . $item["image"]) ?>" /></td>
                                 <td>
                                     <a style="cursor: pointer;" href="<?= base_url("admin/categories/add_edit_categories?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>

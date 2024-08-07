@@ -123,8 +123,9 @@
 .products-carousel .product-image {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    height: 130px;
+    height: 137px;
     object-fit: cover;
+    object-position: center center;
 }
 
 a:hover {

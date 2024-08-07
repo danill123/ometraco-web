@@ -41,7 +41,7 @@
                                 <td><?= $no++ ?></td>
                                 <td>
                                     <?php if(!empty(trim($item["image"]))) { ?>
-                                        <img src="<?= $item["image"] ?>" style="max-width: 100%; width: 100px;" />
+                                        <img src="<?= base_url("image/" . $item["image"]) ?>" style="max-width: 100%; width: 100px;" />
                                     <?php } ?>
                                 </td>
                                 <td><?= $item["name"] ?></td>

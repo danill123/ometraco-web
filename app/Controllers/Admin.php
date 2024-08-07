@@ -26,18 +26,56 @@ class Admin extends BaseController
 
     public function banner() {
         $banner = new Banner();
-        $data["list"] = $this->categoryModel->findAll();
-        return view("admin/category_list", $data);
+        $data["list"] = $banner->findAll();
+        return view("admin/banner_list", $data);
     }
 
     public function banner_add_edit_view() {
-        $data["list"] = $this->categoryModel->findAll();
-        return view("admin/category_list", $data);
+        return view("admin/banner_add_edit");
     }
 
     public function banner_add_edit_post() {
-        $data["list"] = $this->categoryModel->findAll();
-        return view("admin/category_list", $data);
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'title'  => 'required|min_length[3]',
+            'image' => [  
+                'label' => 'Image File',
+                'rules' => 'uploaded[image]'  
+                    . '|is_image[image]'  
+                    . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]' 
+            ]
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        $data = [
+            'name' => $this->request->getPost('name'),
+        ];
+
+        $banner = new Banner();
+        $image = $this->request->getFile('image');
+
+        $filename = $image->getRandomName();
+        $image->move(ROOTPATH . 'public/image', $filename);
+
+        $data = [
+            'image' => $image->getName(),
+            'title' => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'is_show' => $this->request->getPost('is_show')
+        ];
+
+        // 'image' => $this->request->getPost('image'),
+        if(empty($this->request->getPost('id'))) {
+            $banner->insert($data);
+        } else {
+            $banner->update($this->request->getPost('id'), $data);
+        }
+
+        session()->setFlashdata('success', 'Data berhasil di simpan');
+        return redirect()->to(base_url('admin/banner'));
     }
 
     public function categories() {
@@ -57,17 +95,39 @@ class Admin extends BaseController
 
     public function insert_update_categories() {
         $validation = \Config\Services::validation();
-        $validation->setRules([
+        $rules = [
             'name'  => 'required|min_length[3]'
-        ]);
+        ];
+
+        $validation->setRules($rules);
+
+        $image = $this->request->getFile('image');
+
+        if($image->getSize() > 0) {
+            $rules['image'] = [  
+                'label' => 'Image File',
+                'rules' => 'uploaded[image]'  
+                    . '|is_image[image]'
+                    . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp,image/avif]' 
+            ];
+        }
 
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
+        if($image->getSize() > 0) {
+            $filename = $image->getRandomName();
+            $image->move(ROOTPATH . 'public/image', $filename);
+        }
+        
         $data = [
             'name' => $this->request->getPost('name'),
         ];
+
+        if(!empty(trim($image->getName()))) {
+            $data["image"] = $image->getName(); // base_url("image/" . $image->getName());
+        }
 
         // 'image' => $this->request->getPost('image'),
         if(empty($this->request->getPost('id'))) {
@@ -118,7 +178,7 @@ class Admin extends BaseController
                 'label' => 'Image File',
                 'rules' => 'uploaded[image]'  
                     . '|is_image[image]'  
-                    . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]' 
+                    . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp,image/avif]' 
             ];
         }
 
@@ -141,7 +201,7 @@ class Admin extends BaseController
         ];
         
         if(!empty(trim($image->getName()))) {
-            $data["image"] = base_url("image/" . $image->getName());
+            $data["image"] = $image->getName(); // base_url("image/" . $image->getName());
         }
 
         // 'image' => $this->request->getPost('image'),

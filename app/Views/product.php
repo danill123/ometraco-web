@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-4">
-            <img style="max-width: 100%; width: 100%; border-radius: 10px;" class="shadow" src="<?= base_url("image/besi-1.jpeg") ?>" alt="">
+            <img style="max-width: 100%; width: 100%; border-radius: 10px; height: 350px; object-fit: cover; object-position: center center;" class="shadow" src="<?= base_url("image/" . $image) ?>" alt="">
         </div>
         <div class="col-8">
             <h3><?= esc($name) ?></h3>

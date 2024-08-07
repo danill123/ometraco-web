@@ -61,7 +61,7 @@
     
                 <div class="col-6">
                     <p>Gambar</p>
-                    <img id="blah" src="https://dummyimage.com/600x400/000/fff" alt="your image" style="max-width: 100%; width: 300px;" />
+                    <img id="blah" src="<?php if(!empty($detail)) { echo base_url("image/" . $detail["image"]); } else { echo "https://dummyimage.com/600x400&text=dummyimage.com+rocks!"; } ?>" alt="your image" style="max-width: 100%; width: 300px;" />
                     <input accept="image/*" name="image" type='file' id="imgInp" class="mt-3" />
                 </div>
             </div>

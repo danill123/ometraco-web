@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <form action="/admin/insert_update_categories" enctype="multipart/form-data" method="post" class="my-4">
+    <form action="/admin/banner_add_edit_post" enctype="multipart/form-data" method="post" class="my-4">
         <?= csrf_field() ?>
 
         <a style="cursor: pointer;" onclick="history.back()"><i class="fa fa-arrow-left"></i> Kembali </a>
@@ -26,18 +26,32 @@
                     <input type="hidden" name="id" value="<?= $detail["id"] ?>" />
                 <?php } ?>
                 <div class="mb-3">
-                    <label>Nama</label>
-                    <input type="text" value="<?php if(!empty($detail)) { echo $detail["name"]; } ?>" name="name" class="form-control">
+                    <label>Judul</label>
+                    <input type="text" value="<?php if(!empty($detail)) { echo $detail["title"]; } ?>" name="title" class="form-control">
                 </div>
+                <div class="mb-3">
+                    <label>Deskripsi</label>
+                    <input type="text" value="<?php if(!empty($detail)) { echo $detail["description"]; } ?>" name="description" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Munculkan</label>
+                    <select class="form-control" name="is_show">
+                        <option value="yes">Ya</option>
+                        <option value="no">Tidak</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
                 <div>
                     <p>Gambar</p>
-                    <img id="blah" src="<?php if(!empty($detail)) { echo base_url("image/" . $detail["image"]); } else { echo "https://dummyimage.com/600x400&text=dummyimage.com+rocks!"; } ?>" alt="your image" style="max-width: 100%; width: 300px;" />
+                    <img id="blah" src="https://dummyimage.com/600x400&text=dummyimage.com+rocks!" alt="your image" style="max-width: 100%; width: 300px;" />
                     <input accept="image/*" name="image" type='file' id="imgInp" class="mt-3" />
                 </div>
             </div>
         </div>
 
         <script>
+        
             const imgInp = document.getElementById("imgInp"); 
             imgInp.onchange = evt => {
                 const [file] = imgInp.files

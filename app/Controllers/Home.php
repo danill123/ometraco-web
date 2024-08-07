@@ -16,11 +16,15 @@ class Home extends BaseController
     {
         $data = [];
         $db = \Config\Database::connect();
-        $db->query("SET SESSION sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+        // $db->query("SET SESSION sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
 
         $categories   = $db->query('SELECT id, name, image FROM `categories` WHERE show_menu = "yes"');
 
         $data["categories"] = $categories->getResult();
+
+        $banners   = $db->query('SELECT title, description, image FROM `banners` WHERE is_show = "yes"');
+
+        $data["banners"] = $banners->getResult();
 
         $carousels = $db->query("  SELECT * FROM carousels WHERE show_front = 'yes'")->getResult();
 

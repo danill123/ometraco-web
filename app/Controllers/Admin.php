@@ -43,15 +43,31 @@ class Admin extends BaseController
 
     public function banner_add_edit_post() {
         $validation = \Config\Services::validation();
-        $validation->setRules([
-            'title'  => 'required|min_length[3]',
-            'image' => [  
+
+        $rules = [
+            'title'  => 'required|min_length[3]'
+        ];
+
+        $image = $this->request->getFile('image');
+        if(empty($this->request->getPost('id'))) {
+            $rules['image'] = [  
                 'label' => 'Image File',
                 'rules' => 'uploaded[image]'  
                     . '|is_image[image]'  
                     . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp]' 
-            ]
-        ]);
+            ];
+        } else {
+            if($image->getSize() > 0) {
+                $rules['image'] = [  
+                    'label' => 'Image File',
+                    'rules' => 'uploaded[image]'  
+                        . '|is_image[image]'
+                        . '|mime_in[image,image/jpg,image/jpeg,image/gif,image/png,image/webp,image/avif]' 
+                ];
+            }
+        }
+
+        $validation->setRules($rules);
 
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
@@ -62,19 +78,22 @@ class Admin extends BaseController
         ];
 
         $banner = new Banner();
-        $image = $this->request->getFile('image');
-
-        $filename = $image->getRandomName();
-        $image->move(ROOTPATH . 'public/image', $filename);
 
         $data = [
-            'image' => $image->getName(),
             'title' => $this->request->getPost('title'),
             'description' => $this->request->getPost('description'),
             'is_show' => $this->request->getPost('is_show')
         ];
 
-        // 'image' => $this->request->getPost('image'),
+        if($image->getSize() > 0) {
+            $filename = $image->getRandomName();
+            $image->move(ROOTPATH . 'public/image', $filename);
+        }
+
+        if(!empty(trim($image->getName()))) {
+            $data["image"] = $image->getName(); // base_url("image/" . $image->getName());
+        }
+
         if(empty($this->request->getPost('id'))) {
             $banner->insert($data);
         } else {
@@ -82,6 +101,22 @@ class Admin extends BaseController
         }
 
         session()->setFlashdata('success', 'Data berhasil di simpan');
+        return redirect()->to(base_url('admin/banner'));
+    }
+
+    public function delete_banner() {
+        $banner = new Banner();
+        helper('filesystem');
+
+        $detail = $banner->find($this->request->getGet("id"));
+        if(!empty(trim($detail["image"]))) {
+            unlink(
+                set_realpath(ROOTPATH . 'public/image/' . $detail["image"])
+            );
+        }
+
+        $banner->delete($this->request->getGet("id"));
+        session()->setFlashdata('success', 'Data berhasil di hapus');
         return redirect()->to(base_url('admin/banner'));
     }
 
@@ -145,6 +180,21 @@ class Admin extends BaseController
 
         session()->setFlashdata('success', 'Data berhasil di simpan');
         return redirect()->to(base_url('admin/categories'));
+    }
+
+    public function delete_category() {
+        helper('filesystem');
+
+        $detail = $this->categoryModel->find($this->request->getGet("id"));
+        if(!empty(trim($detail["image"]))) {
+            unlink(
+                set_realpath(ROOTPATH . 'public/image/' . $detail["image"])
+            );
+        }
+
+        $this->categoryModel->delete($this->request->getGet("id"));
+        session()->setFlashdata('success', 'Data berhasil di hapus');
+        return redirect()->to(base_url('admin/banner'));
     }
 
     public function products() {
@@ -228,6 +278,21 @@ class Admin extends BaseController
         return redirect()->to(base_url('admin/products'));
     }
 
+    public function delete_product() {
+        helper('filesystem');
+
+        $detail = $this->productModel->find($this->request->getGet("id"));
+        if(!empty(trim($detail["image"]))) {
+            unlink(
+                set_realpath(ROOTPATH . 'public/image/' . $detail["image"])
+            );
+        }
+
+        $this->productModel->delete($this->request->getGet("id"));
+        session()->setFlashdata('success', 'Data berhasil di hapus');
+        return redirect()->to(base_url('admin/banner'));
+    }
+
     public function home_content() {
         $carousel = new Carousel();
         $data["datum"] = $carousel->findAll();
@@ -275,5 +340,14 @@ class Admin extends BaseController
 
         session()->setFlashdata('success', 'Data berhasil di simpan');
         return redirect()->to(base_url('admin'));
+    }
+
+    public function delete_home() {
+        helper('filesystem');
+
+        $carousel = new Carousel();
+        $carousel->delete($this->request->getGet("id"));
+        session()->setFlashdata('success', 'Data berhasil di hapus');
+        return redirect()->to(base_url('admin/banner'));
     }
 }

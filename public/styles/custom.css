@@ -1,9 +1,13 @@
 .owl-carousel-category .owl-next, .owl-carousel-category .owl-prev {
-    background: whitesmoke !important;
+    background: white !important;
     padding-bottom: 5px ;
     width: 25px !important;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
     /* border-radius: 50px !important; */
+}
+
+.owl-carousel-category .owl-next span, .owl-carousel-category .owl-prev span {
+    font-weight: 600 !important;
 }
 
 .owl-carousel-category .owl-next:hover, .owl-carousel-category .owl-prev:hover {
@@ -46,7 +50,7 @@
 /*  */
 
 .products-carousel .owl-next, .products-carousel .owl-prev {
-    background: whitesmoke !important;
+    background: white !important;
     padding-bottom: 5px ;
     width: 25px !important;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
@@ -135,4 +139,10 @@ a:hover {
 
 a {
     color: unset !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .products-carousel .product-image {
+        height: 150px;
+    }
 }

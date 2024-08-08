@@ -46,7 +46,8 @@
                                         <img src="<?= base_url("image/" . $item["image"]) ?>" style="max-width: 100%; width: 100px;" alt="">
                                     <?php } ?>
                                 </td>
-                                <td>
+                                <td class="d-flex">
+                                    <a style="cursor: pointer;" class="mr-1" onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('admin/delete_category?id=') . $item["id"] ?>"><i style="color: red;" class="fa fa-fw fa-trash"></i></a>
                                     <a style="cursor: pointer;" href="<?= base_url("admin/categories/add_edit_categories?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>

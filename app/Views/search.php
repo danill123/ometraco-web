@@ -1,22 +1,15 @@
 <?php echo view('partials/header', ['title' => 'Home']); ?>
 
-<?php echo view('partials/navbar-search'); ?>
+<?php echo view('partials/navbar-search', ['search' => $keywords]); ?>
 
 <div class="container my-3">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-            <li class="breadcrumb-item active"><a><?= $category_name ?></a></li>
-            <!-- <li class="breadcrumb-item active" aria-current="page">Data</li> -->
-        </ol>
-    </nav>
-    
     <style>
         .products-carousel .product-item {
             padding-right: 7px;
             padding-left: 7px;
         }
     </style>
+    <h3>Hasil Pencarian "<?= esc($keywords) ?>"</h3>
     <div class="row products-carousel px-2">
         <?php if(count($datum) > 0) { ?>
             <?php foreach ($datum as $key => $item) { ?>

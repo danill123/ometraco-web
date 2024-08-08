@@ -34,6 +34,7 @@ class Home extends BaseController
 
         
         $data["carousel_list"] = $carousels;
+        $data["products"] = $this->productModel->findAll();
 
         $db->close();
 
@@ -63,6 +64,21 @@ class Home extends BaseController
         $db->close();
 
         return view('category', $data);
+    }
+
+    public function search(): string
+    {
+        $db = \Config\Database::connect();
+
+        $products = $db->query('SELECT products.id, products.name, products.price, products.image, products.location
+                                FROM products
+                                WHERE name LIKE ?', ['%'.$this->request->getGet("q").'%']);
+
+        $data['datum'] = $products->getResult();
+        $data['keywords'] = $this->request->getGet("q");
+
+        $db->close();
+        return view('search', $data);
     }
 
     public function product() {

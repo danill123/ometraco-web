@@ -45,7 +45,8 @@
                                 <td>
                                     <?= $item["show_front"] == "yes" ? "Ya" : "Tidak" ?>
                                 </td>
-                                <td>
+                                <td class="d-flex">
+                                    <a style="cursor: pointer;" class="mr-1" onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('admin/delete_home?id=') . $item["id"] ?>"><i style="color: red;" class="fa fa-fw fa-trash"></i></a>
                                     <a style="cursor: pointer;" href="<?= base_url("admin/home/view_add_edit_home_content?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>

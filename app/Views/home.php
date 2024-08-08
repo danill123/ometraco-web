@@ -7,8 +7,10 @@
     <?php if(count($banners) > 0) { ?>
         <div id="carouselExampleIndicators" class="carousel slide mt-5 mb-5 " data-ride="carousel">
             <ol class="carousel-indicators">
-                <?php foreach ($banners as $key => $item) { ?>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? "active" : "" ?>"></li>
+                <?php if(count($banners) > 1) { ?>
+                    <?php foreach ($banners as $key => $item) { ?>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<?= $key ?>" class="<?= $key == 0 ? "active" : "" ?>"></li>
+                    <?php } ?>
                 <?php } ?>
                 <!-- <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li> -->
@@ -27,14 +29,16 @@
                     <svg style="border-radius: 10px;" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 " width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">Third slide</text></svg>
                 </div> -->
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <?php if(count($banners) > 1) { ?>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            <?php } ?>
         </div>
     <?php } ?>
 
@@ -192,7 +196,7 @@
 
         <div>
             <h4 class=""><?= esc($item->name) ?></h4>
-            <div class="owl-carousel owl-theme products-carousel">
+            <div class="owl-carousel owl-theme products-carousel products-carousel-slider">
 
                 <?php foreach ($item->products as $subkey => $subitem) { ?>
                     <div style="padding: 1.7px; cursor: pointer;" class="div-href" link-href="<?= base_url("product?id=" . esc($subitem["id"])) ?>">
@@ -229,6 +233,50 @@
         </script>
     <?php } ?>
 
+    <style>
+        .product-list .product-item {
+            padding-right: 7px;
+            padding-left: 7px;
+        }
+    </style>
+    <?php if(count($products) > 0) { ?>
+        <hr class="mt-4">
+    <?php } ?>
+    <div class="row products-carousel product-list px-2"> 
+        <?php if(count($products) > 0) { ?>
+            <?php foreach ($products as $key => $item) { ?>
+                <a href="<?= base_url("product?id=" . esc($item["id"])) ?>" class="product-item col-6 col-md-2 mt-2">
+                    <div class="mb-1 mt-1 shadow-sm" style="border-radius: 10px;">
+                        <img class="product-image" style="max-width: 100%; width: 100%;" src="<?= base_url("image/" . $item["image"]) ?>" alt="">
+                        <div class="p-1 px-2">
+                            <p class="product-name list-product-name"><?= esc($item["name"]) ?></p>
+                            <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($item["price"]), 2) )) ?> </h6> 
+                            <p class="location-name"><?= esc($item["location"]) ?></p>
+                        </div>
+                    </div>
+                </a>
+            <?php } ?>
+        <?php } else { ?>
+            <div class="col-12">
+                <h4 class="text-center mt-5">Tidak ada data</h4>
+            </div>
+        <?php } ?>
+
+        <script>
+            $(document).ready(function() {
+                let maxHeight = 0;
+                $('.list-product-name').each(function() {
+                    let height = $(this).outerHeight();
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                });
+
+                $('.list-product-name').css('height', maxHeight + 'px');
+            });
+        </script>
+    </div>
+
 </div>
 
 <script>
@@ -249,7 +297,7 @@
         }
     })
 
-    jQuery('.products-carousel').owlCarousel({
+    jQuery('.products-carousel-slider').owlCarousel({
         loop:false,
         margin:10,
         nav:true,

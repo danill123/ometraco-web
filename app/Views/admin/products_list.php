@@ -51,7 +51,8 @@
                                 <td><?= $item["name"] ?></td>
                                 <td>Rp. <?= preg_replace('/\.00$/', '', number_format($item["price"], 2) ) ?></td>
                                 <td>Kategori</td>
-                                <td>
+                                <td class="d-flex">
+                                    <a style="cursor: pointer;" class="mr-1" onclick="return confirm('Yakin ingin menghapus data?')" href="<?= base_url('admin/delete_product?id=') . $item["id"] ?>"><i style="color: red;" class="fa fa-fw fa-trash"></i></a>
                                     <a style="cursor: pointer;" href="<?= base_url("admin/products/add_edit_product?id=" . $item["id"]) ?>"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                             </tr>

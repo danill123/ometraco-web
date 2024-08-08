@@ -15,10 +15,10 @@
     </nav>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-md-4 mt-3">
             <img style="max-width: 100%; width: 100%; border-radius: 10px; height: 350px; object-fit: cover; object-position: center center;" class="shadow" src="<?= base_url("image/" . $image) ?>" alt="">
         </div>
-        <div class="col-8">
+        <div class="col-12 col-md-8 mt-3">
             <h3><?= esc($name) ?></h3>
             <h4 class="my-3">Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($price), 2) )) ?> / unit</h4>
             <h4>Dikirim Dari <?= esc($location) ?></h4>

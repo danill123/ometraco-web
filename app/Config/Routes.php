@@ -8,16 +8,21 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/category', 'Home::category');
 $routes->get('/product', 'Home::product');
+$routes->get('/search', 'Home::search');
 
 $admin_routes = [
     'admin' => 'Admin::home_content',
     'admin/home/view_add_edit_home_content' => 'Admin::view_add_edit_home_content',
+    'admin/delete_home' => 'Admin::delete_home',
     'admin/products' => 'Admin::products',
     'admin/products/add_edit_product' => 'Admin::add_edit_product',
+    'admin/delete_product' => 'Admin::delete_product',
     'admin/categories' => 'Admin::categories',
+    'admin/delete_category' => 'Admin::delete_category',
     'admin/categories/add_edit_categories' => 'Admin::add_edit_categories',
     'admin/banner' => 'Admin::banner',
-    'admin/banner/banner_add_edit_view' => 'Admin::banner_add_edit_view'
+    'admin/banner/banner_add_edit_view' => 'Admin::banner_add_edit_view',
+    'admin/delete_banner' => 'Admin::delete_banner'
 ];
 
 $routes->post('admin/insert_update_product', 'Admin::insert_update_product');

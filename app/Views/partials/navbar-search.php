@@ -1,5 +1,5 @@
 <!-- <div class="container"></div> -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="position: sticky;">
   <div class="container">
 
     <a class="navbar-brand" href="<?= base_url() ?>">
@@ -33,8 +33,8 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Cari Produk" aria-label="Search">
+      <form action="<?= base_url("search") ?>" method="GET" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" value="<?php if(!empty($search)) { echo $search; } ?>" name="q" type="search" placeholder="Cari Produk" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cari</button>
       </form>
     </div>

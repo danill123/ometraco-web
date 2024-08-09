@@ -42,8 +42,15 @@
                 <div class="mb-3">
                     <label>Munculkan</label>
                     <select class="form-control" name="is_show">
-                        <option value="yes" <?php if(!empty($detail)) { echo ($detail["is_show"] == "yes" ? "selected" : ""); } ?> value="yes">Ya</option>
-                        <option value="no" <?php if(!empty($detail)) { echo ($detail["is_show"] == "no" ? "selected" : ""); } ?> value="no">Tidak</option>
+                        <option value="yes" <?php if(!empty($detail)) { echo ($detail["is_show"] == "yes" ? "selected" : ""); } ?>>Ya</option>
+                        <option value="no" <?php if(!empty($detail)) { echo ($detail["is_show"] == "no" ? "selected" : ""); } ?>>Tidak</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>Munculkan Teks</label>
+                    <select class="form-control" name="show_text">
+                        <option value="yes" <?php if(!empty($detail)) { echo ($detail["show_text"] == "yes" ? "selected" : ""); } ?>>Ya</option>
+                        <option value="no" <?php if(!empty($detail)) { echo ($detail["show_text"] == "no" ? "selected" : ""); } ?>>Tidak</option>
                     </select>
                 </div>
             </div>

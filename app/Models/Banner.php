@@ -13,7 +13,7 @@ class Banner extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        "image", "title", "description", "is_show"
+        "image", "title", "description", "is_show", "show_text"
     ];
 
     protected bool $allowEmptyInserts = false;

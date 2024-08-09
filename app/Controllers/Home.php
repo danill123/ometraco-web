@@ -22,7 +22,7 @@ class Home extends BaseController
 
         $data["categories"] = $categories->getResult();
 
-        $banners   = $db->query('SELECT title, description, image FROM `banners` WHERE is_show = "yes"');
+        $banners   = $db->query('SELECT title, description, image, show_text FROM `banners` WHERE is_show = "yes"');
 
         $data["banners"] = $banners->getResult();
 
@@ -97,8 +97,18 @@ class Home extends BaseController
             $data["category_id"] = $value->category_id;
         }
 
+        $products = $db->query('SELECT products.id, products.name, products.price, products.image, products.location
+                                FROM `product_categories` INNER JOIN products ON products.id = `product_categories`.product_id
+                                WHERE product_categories.category_id = ? AND product_categories.product_id != ?', [$data["category_id"], $this->request->getGet("id")]);
+
+        $data['related_products'] = $products->getResult();
+
         $db->close();
 
         return view('product', $data);
+    }
+
+    public function contact() {
+        return view('contact');
     }
 }

@@ -82,7 +82,8 @@ class Admin extends BaseController
         $data = [
             'title' => $this->request->getPost('title'),
             'description' => $this->request->getPost('description'),
-            'is_show' => $this->request->getPost('is_show')
+            'is_show' => $this->request->getPost('is_show'),
+            'show_text' => $this->request->getPost('show_text')
         ];
 
         if($image->getSize() > 0) {
@@ -254,7 +255,9 @@ class Admin extends BaseController
             'name' => $this->request->getPost('name'),
             'description' => $this->request->getPost('description'),
             'price' => (int) preg_replace('/,/', '', $this->request->getPost('price')),
-            'location' => $this->request->getPost('location')
+            'location' => $this->request->getPost('location'),
+            'stok' => $this->request->getPost('stok'),
+            "discount_nominal" => (int) preg_replace('/,/', '', $this->request->getPost('discount_nominal'))
         ];
         
         if(!empty(trim($image->getName()))) {

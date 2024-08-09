@@ -35,7 +35,7 @@
       </ul>
       <form action="<?= base_url("search") ?>" method="GET" class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" value="<?php if(!empty($search)) { echo $search; } ?>" name="q" type="search" placeholder="Cari Produk" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cari</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" style="background: #6482AD; border: #6482AD; color: white;" type="submit">Cari</button>
       </form>
     </div>
   </div>

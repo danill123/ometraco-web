@@ -19,6 +19,12 @@
                 <?php foreach ($banners as $key => $item) { ?>
                     <div class="carousel-item <?= $key == 0 ? "active" : "" ?>">
                         <img style="border-radius: 10px; object-fit: cover;" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 " width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide" src="<?= base_url("image/" . $item->image) ?>">
+                        <?php if($item->show_text == "yes") { ?>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5><?= esc($item->title) ?></h5>
+                                <p><?= esc($item->description) ?></p>
+                            </div>
+                        <?php } ?>
                         <!-- <svg style="border-radius: 10px;" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100 " width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="50%" y="50%" fill="#444" dy=".3em">First slide</text></svg> -->
                     </div>
                 <?php } ?>

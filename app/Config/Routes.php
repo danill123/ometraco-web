@@ -9,6 +9,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/category', 'Home::category');
 $routes->get('/product', 'Home::product');
 $routes->get('/search', 'Home::search');
+$routes->get('/contact', 'Home::contact');
 
 $admin_routes = [
     'admin' => 'Admin::home_content',

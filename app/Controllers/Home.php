@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Products;
+use App\Models\Contact;
 
 class Home extends BaseController
 {
@@ -109,6 +110,41 @@ class Home extends BaseController
     }
 
     public function contact() {
-        return view('contact');
+        $message = "";
+        if(!empty($_GET["product_id"])) {
+            $product = $this->productModel->find($this->request->getGet("product_id"));
+            $message = "Saya ingin membeli " . $product["name"];
+        }
+
+        $data["message"] = $message;
+
+        return view('contact', $data);
+    }
+
+    public function contact_post() {
+        $data = [
+            "name" => $this->request->getPost("name"),
+            "email" => $this->request->getPost("email"),
+            "pesan" => $this->request->getPost("message")
+        ];
+
+        $validation = \Config\Services::validation();
+
+        $rules = [
+            'name'  => 'required|min_length[3]',
+            'email' => 'required|valid_email',
+            'message' => 'required|min_length[2]'
+        ];
+
+        $validation->setRules($rules);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        $contact = new Contact();
+        $contact->insert($data);
+        session()->setFlashdata('success', 'Pesan Berhasil di Kirimkan');
+        return redirect()->to(base_url('contact'));
     }
 }

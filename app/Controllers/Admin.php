@@ -8,6 +8,7 @@ use App\Models\Products;
 use App\Models\Category;
 use App\Models\Carousel;
 use App\Models\Banner;
+use App\Models\Contact;
 
 class Admin extends BaseController
 {
@@ -352,5 +353,11 @@ class Admin extends BaseController
         $carousel->delete($this->request->getGet("id"));
         session()->setFlashdata('success', 'Data berhasil di hapus');
         return redirect()->to(base_url('admin/banner'));
+    }
+
+    public function contacts() {
+        $contacts = new Contact();
+        $data["list"] = $contacts->findAll();
+        return view('admin/contact_list', $data);
     }
 }

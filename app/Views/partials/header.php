@@ -31,5 +31,6 @@
     <script src="<?= base_url("vendor/gijgo/js/gijgo.min.js"); ?>"></script>
 
     <title><?= $title ?></title>
+    <link rel="icon" type="image/x-icon" href="<?= base_url('image/ometraco.jpg'); ?>">
   </head>
   <body>

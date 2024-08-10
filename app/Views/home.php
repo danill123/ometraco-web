@@ -57,61 +57,6 @@
                 </a>
             <?php } ?>
         </div>
-
-        <!-- <div class="row justify-content-center">
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-
-            <div class="col-md-2 p-1">
-                <div class="d-flex justify-content-center" style="border-radius: 5px; flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: contain;">
-                    <h5 class="text-white text-center">Minel & Kubara</h5>
-                </div>
-            </div>
-    
-        </div> -->
-        <!-- <div class="col-md-2 px-1  d-flex justify-content-center" style="flex-direction: column; background-image: url('<?= base_url("image/aluminum.jpg.webp") ?>'); height: 120px; object-fit: cover;">
-            <h5 class="text-white text-center">Minel & Kubara</h5>
-        </div> -->
-
     </div>
 
     <!-- <hr class="">
@@ -205,13 +150,16 @@
             <div class="owl-carousel owl-theme products-carousel products-carousel-slider">
 
                 <?php foreach ($item->products as $subkey => $subitem) { ?>
-                    <div style="padding: 1.7px; cursor: pointer;" class="div-href" link-href="<?= base_url("product?id=" . esc($subitem["id"])) ?>">
+                    <div style="padding: 1.7px;">
                         <div class="item mb-1 mt-1 shadow-sm">
-                            <img class="product-image" src="<?= base_url("image/" . $subitem["image"]) ?>" alt="">
+                            <img class="product-image div-href" style="cursor: pointer;" link-href="<?= base_url("product?id=" . esc($subitem["id"])) ?>" src="<?= base_url("image/" . $subitem["image"]) ?>" alt="">
                             <div class="p-1 px-2">
-                                <p class="product-name product-name<?= $item->id ?>"><?= esc($subitem["name"]) ?></p>
-                                <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($subitem["price"]), 2) )) ?> </h6> 
-                                <p class="location-name"><?= esc($subitem["location"]) ?></p>
+                                <div style="cursor: pointer;" class="div-href" link-href="<?= base_url("product?id=" . esc($subitem["id"])) ?>">
+                                    <p class="product-name product-name<?= $item->id ?>"><?= esc($subitem["name"]) ?></p>
+                                    <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($subitem["price"]), 2) )) ?> </h6> 
+                                    <p class="location-name"><?= esc($subitem["location"]) ?></p>
+                                </div>
+                                <div class="text-center py-1 px-3 mb-1 hubungi-button div-href" link-href="<?= base_url("contact?product_id=" . $subitem["id"]) ?>">Hubungi Kami</div>
                             </div>
                         </div>
                     </div>
@@ -251,13 +199,16 @@
     <div class="row products-carousel product-list px-2"> 
         <?php if(count($products) > 0) { ?>
             <?php foreach ($products as $key => $item) { ?>
-                <a href="<?= base_url("product?id=" . esc($item["id"])) ?>" class="product-item col-6 col-md-2 mt-2">
+                <a class="product-item col-6 col-md-2 mt-2">
                     <div class="mb-1 mt-1 shadow-sm" style="border-radius: 10px;">
-                        <img class="product-image" style="max-width: 100%; width: 100%;" src="<?= base_url("image/" . $item["image"]) ?>" alt="">
+                        <img class="product-image div-href" style="max-width: 100%; width: 100%; cursor: pointer;" link-href="<?= base_url("product?id=" . esc($item["id"])) ?>" alt="" src="<?= base_url("image/" . $item["image"]) ?>" alt="">
                         <div class="p-1 px-2">
-                            <p class="product-name list-product-name"><?= esc($item["name"]) ?></p>
-                            <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($item["price"]), 2) )) ?> </h6> 
-                            <p class="location-name"><?= esc($item["location"]) ?></p>
+                            <div class="div-href" style="cursor: pointer;" link-href="<?= base_url("product?id=" . esc($item["id"])) ?>">
+                                <p class="product-name list-product-name"><?= esc($item["name"]) ?></p>
+                                <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($item["price"]), 2) )) ?> </h6> 
+                                <p class="location-name"><?= esc($item["location"]) ?></p>
+                            </div>
+                            <div class="text-center py-1 px-3 mb-1 hubungi-button div-href" link-href="<?= base_url("contact?product_id=" . $item["id"]) ?>">Hubungi Kami</div>
                         </div>
                     </div>
                 </a>

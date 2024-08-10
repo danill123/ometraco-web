@@ -10,6 +10,7 @@ $routes->get('/category', 'Home::category');
 $routes->get('/product', 'Home::product');
 $routes->get('/search', 'Home::search');
 $routes->get('/contact', 'Home::contact');
+$routes->post('/post_contact', 'Home::contact_post');
 
 $admin_routes = [
     'admin' => 'Admin::home_content',
@@ -23,7 +24,8 @@ $admin_routes = [
     'admin/categories/add_edit_categories' => 'Admin::add_edit_categories',
     'admin/banner' => 'Admin::banner',
     'admin/banner/banner_add_edit_view' => 'Admin::banner_add_edit_view',
-    'admin/delete_banner' => 'Admin::delete_banner'
+    'admin/delete_banner' => 'Admin::delete_banner',
+    'admin/contacts' => 'Admin::contacts'
 ];
 
 $routes->post('admin/insert_update_product', 'Admin::insert_update_product');

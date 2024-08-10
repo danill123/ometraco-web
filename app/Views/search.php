@@ -1,4 +1,4 @@
-<?php echo view('partials/header', ['title' => 'Home']); ?>
+<?php echo view('partials/header', ['title' => $keywords]); ?>
 
 <?php echo view('partials/navbar-search', ['search' => $keywords]); ?>
 
@@ -13,13 +13,16 @@
     <div class="row products-carousel px-2">
         <?php if(count($datum) > 0) { ?>
             <?php foreach ($datum as $key => $item) { ?>
-                <a href="<?= base_url("product?id=" . esc($item->id)) ?>" class="product-item col-6 col-md-2 mt-2">
+                <a class="product-item col-6 col-md-2 mt-2">
                     <div class="mb-1 mt-1 shadow-sm" style="border-radius: 10px;">
-                        <img class="product-image" style="max-width: 100%; width: 100%;" src="<?= base_url("image/" . $item->image) ?>" alt="">
+                        <img class="product-image div-href"  link-href="<?= base_url("product?id=" . esc($item->id)) ?>" style="max-width: 100%; width: 100%; cursor: pointer;" src="<?= base_url("image/" . $item->image) ?>" alt="">
                         <div class="p-1 px-2">
-                            <p class="product-name"><?= esc($item->name) ?></p>
-                            <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($item->price), 2) )) ?> </h6> 
-                            <p class="location-name"><?= esc($item->location) ?></p>
+                            <div style="cursor: pointer;" class="div-href" link-href="<?= base_url("product?id=" . esc($item->id)) ?>">
+                                <p class="product-name"><?= esc($item->name) ?></p>
+                                <h6>Rp. <?= str_replace(',', '.', preg_replace('/\.00$/', '', number_format(esc($item->price), 2) )) ?> </h6> 
+                                <p class="location-name"><?= esc($item->location) ?></p>
+                            </div>
+                            <div class="text-center py-1 px-3 mb-1 div-href hubungi-button" link-href="<?= base_url("contact") ?>">Hubungi Kami</div>
                         </div>
                     </div>
                 </a>
@@ -44,6 +47,12 @@
             });
         </script>
     </div>
+
+    <script>
+    $('.div-href').click(function(){
+        window.location.href = $(this).attr("link-href");
+    })
+    </script>
 </div>
 
 <?php echo view('partials/footer'); ?>

@@ -45,6 +45,11 @@
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline ml-3">Kategori</span>
                         </a>
                     </li>
+                    <li class="nav-item <?= strpos(current_url(true),"admin/contacts") ? "active-menu" : "" ?>">
+                        <a href="<?= base_url('admin/contacts') ?>" class="nav-link align-middle px-3 ">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline ml-3">Pesan</span>
+                        </a>
+                    </li>
                 </ul>
                 <hr>
             </div>

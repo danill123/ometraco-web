@@ -132,6 +132,11 @@
     object-position: center center;
 }
 
+.products-carousel .hubungi-button {
+    cursor: pointer;
+    font-weight: 400; color: white; background:  linear-gradient(156deg, rgba(0, 0, 0, 0.50) 0%, rgba(137.67, 137.67, 137.67, 0.50) 100%); border-radius: 5px;
+}
+
 a:hover {
     color: unset !important;
     text-decoration: none !important;

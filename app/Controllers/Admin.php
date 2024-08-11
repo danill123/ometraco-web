@@ -25,6 +25,42 @@ class Admin extends BaseController
         //
     }
 
+    public function login()
+    {
+        return view("admin/login");
+    }
+
+    public function login_post()
+    {
+        $db = \Config\Database::connect();
+        $login = $db->query('SELECT username, password FROM `users` WHERE `username` = ?', [$this->request->getPost("username")]);
+
+        $parse = $login->getRowObject();
+        $db->close();
+        if($parse) {
+            $hash = $parse->password;
+            $verify = password_verify(''.$this->request->getPost("password").'', $hash);
+            if($verify) {
+                session()->setFlashdata('success', 'Login berhasil');
+                $session = session();
+
+                $newdata = [
+                    'username'  => $parse->username,
+                    'logged_in' => true,
+                ];
+                
+                $session->set($newdata);
+                return redirect()->to(base_url('/admin'));
+            } else {
+                session()->setFlashdata('failed', 'Password tidak sesuai!');
+                return redirect()->back();
+            }
+        } else {
+            session()->setFlashdata('failed', 'Username tidak ditemukan!');
+            return redirect()->back();
+        }
+    }
+
     public function banner() {
         $banner = new Banner();
         $data["list"] = $banner->findAll();

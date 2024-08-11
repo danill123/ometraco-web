@@ -43,6 +43,10 @@
                         <input type="text" id="priceInput" name="price" value="<?php if(!empty($detail)) { echo preg_replace('/\.00$/', '', number_format($detail["price"], 2) ); } ?>" class="form-control">
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Stok</label>
+                        <input type="text" name="stok" value="<?php if(!empty($detail)) { echo $detail["stok"]; } ?>" class="form-control">
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Lokasi</label>
                         <input type="text" name="location" class="form-control" value="<?php if(!empty($detail)) { echo $detail["location"]; } ?>">
                     </div>

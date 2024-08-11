@@ -59,7 +59,7 @@
 
             <h5 class="mt-3 item-title">Stok</h5>
             <div class="d-flex">
-                <div class="box-product-detail py-2 px-3"><?= esc("10") ?></div>
+                <div class="box-product-detail py-2 px-3"><?= esc($stok) ?></div>
             </div>
 
             <h5 class="mt-3 item-title">Kategori</h5>

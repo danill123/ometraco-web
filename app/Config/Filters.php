@@ -24,6 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'checklogin' => \App\Filters\Checklogin::class
     ];
 
     /**
@@ -58,7 +59,9 @@ class Filters extends BaseConfig
      *
      * @var array<string, list<string>>
      */
-    public array $methods = [];
+    public array $methods = [
+        'POST' => ['csrf']
+    ];
 
     /**
      * List of filter aliases that should run on any

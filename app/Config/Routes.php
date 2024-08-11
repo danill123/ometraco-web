@@ -11,7 +11,8 @@ $routes->get('/product', 'Home::product');
 $routes->get('/search', 'Home::search');
 $routes->get('/contact', 'Home::contact');
 $routes->post('/post_contact', 'Home::contact_post');
-
+$routes->get('/admin/login', 'Admin::login');
+$routes->post('/admin/post_login', 'Admin::login_post');
 $admin_routes = [
     'admin' => 'Admin::home_content',
     'admin/home/view_add_edit_home_content' => 'Admin::view_add_edit_home_content',
@@ -33,4 +34,4 @@ $routes->post('admin/insert_update_categories', 'Admin::insert_update_categories
 $routes->post('admin/add_edit_home_content_post', 'Admin::add_edit_home_content_post');
 $routes->post('admin/banner_add_edit_post', 'Admin::banner_add_edit_post');
 
-$routes->map($admin_routes);
+$routes->map($admin_routes, ['filter' => 'checklogin']);

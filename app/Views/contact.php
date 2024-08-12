@@ -10,9 +10,9 @@
 </div>
 
 <div class="container">
-    <div class="row" style="margin-top: -150px;">
+    <div class="row justify-content-center" style="margin-top: -150px;">
 
-        <div class="col-12 mt-4 col-md-6 " style="border-radius: 18px;">
+        <div class="col-12 mt-5 col-md-6 " style="border-radius: 18px;">
             <?php if (session()->getFlashdata('errors')): ?>
                 <?php foreach (session()->getFlashdata('errors') as $error): ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -52,32 +52,59 @@
 
             </form>
         </div>
-        <div class="col-12 mt-4 col-md-6">
+        <div class="col-12 mt-5 col-md-6">
             <div class="card px-4 py-3" style="border-radius: 18px">
                 <h4 class="mb-3">Lokasi</h4>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15867.305330875935!2d106.72785483234956!3d-6.154008718205666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7ea41b06cdd%3A0xdfb262180bec6ab0!2sPT.%20Ometraco%20Arya%20Samanta!5e0!3m2!1sen!2sus!4v1723261493783!5m2!1sen!2sus" style="max-width: 100%; border: unset;" width="600" height="332" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-        <div class="col-12 mt-4 col-md-4">
-            <div class="card px-4 py-3" style="background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
-                <h6 class="text-white">Telepon</h6>
-                <h6 class="mt-4 text-white">+6278463726123</h6>
+        <div class="col-12 mt-5 col-md-4">
+            <div class="card px-4 py-3 d-flex card-contact justify-content-between" style="flex-direction:column; background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
+                <h5 class="text-white">Jakarta</h5>
+                <h6 class="mt-4 text-white" style="font-weight: 400;">Grha Praba Samanta, Jl. Daan Mogot KM. 12 No.9, Jakarta Barat 11730, Indonesia.</h6>
             </div>
         </div>
-        <div class="col-12 mt-4 col-md-4">
-            <div class="card px-4 py-3" style="background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
-                <h6 class="text-white">Bidang Perusahaan</h6>
-                <h6 class="mt-4 text-white">Export-Import</h6>
+        <div class="col-12 mt-5 col-md-4">
+            <div class="card px-4 py-3 d-flex card-contact justify-content-between" style="flex-direction:column; background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
+                <h5 class="text-white">Surabaya</h5>
+                <h6 class="mt-4 text-white" style="font-weight: 400;">Kawasan SIER, Jl. Rungkut Industri I No. 5 - 7, Surabaya 60293, Indonesia.</h6>
             </div>
         </div>
-        <div class="col-12 mt-4 col-md-4">
-            <div class="card px-4 py-3" style="background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
-                <h6 class="text-white">Email</h6>
-                <h6 class="mt-4 text-white">ometraco@mail.com</h6>
+        <div class="col-12 mt-5 col-md-4">
+            <div class="card px-4 py-3 d-flex card-contact justify-content-between" style="flex-direction:column; background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
+                <h5 class="text-white">Phone</h5>
+                <div class="mt-4">
+                    <h6 class="text-white" style="font-weight: 400;">+62-21-619 6166</h6>
+                    <h6 class="text-white" style="font-weight: 400;">+62-31-843 2836</h6>
+                    <h6 class="text-white" style="font-weight: 400;">+62-31-849 7888 (hunting)</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-5 col-md-4">
+            <div class="card px-4 py-3 d-flex card-contact justify-content-between" style="flex-direction:column; background: linear-gradient(296deg, rgba(0, 0, 0, 0.50) 0%, rgba(134, 134, 134, 0.50) 100%); border-radius: 14px; border: unset;">
+                <h5 class="text-white">Fax</h5>
+                <div class="mt-4">
+                    <h6 class="text-white" style="font-weight: 400;">+62-21-619 3447</h6>
+                    <h6 class="text-white" style="font-weight: 400;">+62-31-843 2791</h6>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        let maxHeight = 0;
+        $('.card-contact').each(function() {
+            let height = $(this).outerHeight();
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+        });
+
+        $('.card-contact').css('height', maxHeight + 'px');
+    });
+</script>
 <!-- public\image-static\banner-contact.png -->
 <div class="container mb-5">
 
